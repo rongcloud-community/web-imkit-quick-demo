@@ -6,7 +6,7 @@ import {
   IInitOption, ConversationType, IReceivedConversation,
   IConversationOption,
 } from '@rongcloud/imlib-next';
-import service from './service';
+import { service, customMessage } from './imkitConfig';
 import { validateParam } from '../utils/validator';
 import { 
   currentUserInfo, messageListRef, language,
@@ -25,6 +25,7 @@ export const initIMKit = async (appkey: string, libOption: IInitOption) => {
     appkey,
     service,
     libOption,
+    customMessage: customMessage,
   });
 };
 

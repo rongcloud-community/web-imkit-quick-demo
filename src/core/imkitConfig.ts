@@ -1,4 +1,4 @@
-import { IConversationOption } from '@rongcloud/imlib-next';
+import { IConversationOption, IAReceivedMessage } from '@rongcloud/imlib-next';
 import { IService } from '@rongcloud/imkit';
 import { Random as R } from "mockjs";
 import { currentUserInfo } from "./context";
@@ -33,4 +33,28 @@ const service: IService = {
   }
 }
 
-export default service
+const customMessage = {
+  userMessage: {
+    'kit:person': (message: IAReceivedMessage) => {
+      return `
+        <div class="kit-person-message">
+          <div onclick="alert('点击')">这是一条自定义消息 ${JSON.stringify(message.content)}</div>
+        </div>
+      `
+    }
+  },
+  notifyMessage: {
+    
+  },
+  lastMessage: {
+    'kit:person': (message: IAReceivedMessage) => {
+      const content = message.content;
+      return `[自定义消息]`;
+    },
+  }
+}
+
+export {
+  service,
+  customMessage
+}
